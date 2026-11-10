@@ -853,6 +853,7 @@ work-timeline {
 }
 
 /* Attribute selector: style the email field alongside the message field. */
+.message-form input[type="text"],
 .message-form input[type="email"],
 .message-form textarea {
     width: 100%;
@@ -863,6 +864,10 @@ work-timeline {
     background-color: var(--azure-mist);
     color: var(--text-color);
     font: inherit;
+}
+
+.connect-page > main > .message-form {
+    padding: var(--spacing);
 }
 
 .message-form textarea {
