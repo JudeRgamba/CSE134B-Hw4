@@ -5,13 +5,37 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description"
             content="Personal website showcasing Jude Gamba's portfolio">
-        <Title>Let's Connect - Jude Gamba</Title>
+        <Title>No JS Form</Title>
         <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
         <link rel="stylesheet" href="stylesheet.css">
     </head>
     <body class="connect-page">
         <header>
-            <h1>Let's Connect</h1>
+            <h1>No JS Form</h1>
+
+            <!-- Mobile nav bar-->
+            <details class="mobile-menu">
+                <summary aria-label="Navigation menu">
+                    <span class="hamburger" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </span>
+                </summary>
+                <nav aria-label="Mobile navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Me</a></li>
+                        <li><a href="work.html">Work</a></li>
+                        <li><a href="connect.html">Let's Connect</a></li>
+                        <li>
+                            <a href="form-no-js.html" aria-current="page">
+                                No JS Form
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </details>
         </header>
         <nav aria-label="Main navigation">
             <h2><span class="first-name">jude</span>.<span class="last-name">gamba</span></h2>
@@ -54,16 +78,21 @@
         </nav>
 
         <main>
-            <form class="message-form" action="https://httpbin.org/post" method="post">
+            <form class="message-form validation-form" action="https://httpbin.org/post" method="post">
                 <h2>Personal Information</h2>
+                <input type="hidden" value="true" name="possible_bot">
                 <label for="fname">First Name: </label>
-                <input type="text" id="fname" name="fname" autocomplete="name" required>
+                <input type="text" id="fname" name="fname" autocomplete="given-name" minlength="1" maxlength="100" aria-describedby="fname-help" required>
+                <small class="field-error" id="fname-help">Name between 1-100 characters</small>
                 <label for="lname">Last Name: </label>
-                <input type="text" id="lname" name="lname" autocomplete="name" required>
+                <input type="text" id="lname" name="lname" autocomplete="family-name" minlength="1" maxlength="100" aria-describedby="lname-help"required>
+                <small class="field-error" id="lname-help">Name between 1-100 characters</small>
                 <label for="email">Email: </label>
-                <input type="email" id="email" name="email" autocomplete="email" required>
+                <input type="email" id="email" name="email" autocomplete="email" aria-describedby="email-help"required>
+                <small class="field-error" id="email-help">Enter email such as john@example.com</small>
                 <label for="user-comment">Comments: </label>
-                <textarea id="user-comment" name="comment" placeholder="Tell me anything..." rows="6" required></textarea>
+                <textarea id="user-comment" name="comment" placeholder="Tell me anything..." rows="6" minlength="10" maxlength="1000" aria-describedby="email-help" required></textarea>
+                <small class="field-error" id="comment-help">Enter any message between 10 and 1000 characters</small>
                 <button type="submit">Submit</button>
             </form>
         </main>
