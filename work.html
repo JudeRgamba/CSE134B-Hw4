@@ -8,35 +8,37 @@
         <Title>Work Page</Title>
         <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
         <link rel="stylesheet" href="stylesheet.css">
+        <script src="theme.js"></script>
     </head>
     <body class="work-page">
         <header>
             <h1>Serious Stuff...</h1>
+            <button type="button" class="theme-toggle" hidden>Switch to dark theme</button>
         </header>
         <nav aria-label="Main navigation">
             <h2><span class="first-name">jude</span>.<span class="last-name">gamba</span></h2>
             <ul>
                 <li>
                     <a href="index.html">
-                        <img src="assets/icons/home.svg" alt="" width="24" height="24">
+                        <img src="assets/icons/home.svg" data-dark-src="assets/icons/home-converted-inverted.png" alt="" width="24" height="24">
                         <span>Home</span>
                     </a>
                 </li>
                 <li>
                     <a href="about.html">
-                        <img src="assets/icons/user.svg" alt="" width="24" height="24">
+                        <img src="assets/icons/user.svg" data-dark-src="assets/icons/user-converted-inverted.png" alt="" width="24" height="24">
                         <span>About Me</span>
                     </a>
                 </li>
                 <li>
                     <a href="work.html" aria-current="page">
-                        <img src="assets/icons/briefcase.svg" alt="" width="24" height="24">
+                        <img src="assets/icons/briefcase.svg" data-dark-src="assets/icons/briefcase-converted-inverted.png" alt="" width="24" height="24">
                         <span>Work</span>
                     </a>
                 </li>
                 <li>
                     <a href="connect.html">
-                        <img src="assets/icons/paper-plane.svg" alt="" width="24" height="24">
+                        <img src="assets/icons/paper-plane.svg" data-dark-src="assets/icons/paper-plane-converted-inverted.png" alt="" width="24" height="24">
                         <span>Let's Connect</span>
                     </a>
                 </li>
@@ -92,7 +94,7 @@
                         <li>
                             <div class="company-heading">
                                 <img
-                                    src="assets/icons/cosd_logo.jpg"
+                                    src="assets/icons/cosd_logo.jpg" data-dark-src="assets/icons/cosd_logo-converted-inverted.png"
                                     alt=""
                                     width="60"
                                     height="40">
@@ -109,7 +111,7 @@
                         <li>
                             <div class="company-heading">
                                 <img
-                                    src="assets/icons/cosd_logo.jpg"
+                                    src="assets/icons/cosd_logo.jpg" data-dark-src="assets/icons/cosd_logo-converted-inverted.png"
                                     alt=""
                                     width="60"
                                     height="40">
@@ -273,14 +275,14 @@
             <ul class="social-links" aria-label="Social profiles">
                 <li>
                     <a class="social-link" href="https://www.linkedin.com/in/jude-raphael-gamba">
-                        <img src="assets/icons/linkedin.svg"
+                        <img src="assets/icons/linkedin.svg" data-dark-src="assets/icons/linkedin-converted-inverted.png"
                             alt="" width="24" height="24">
                         <span>LinkedIn</span>
                     </a>
                 </li>
                 <li>
                     <a class="social-link" href="https://github.com/JudeRgamba">
-                        <img src="assets/icons/GitHub_Invertocat_Black_Clearspace.svg"
+                        <img src="assets/icons/GitHub_Invertocat_Black_Clearspace.svg" data-dark-src="assets/icons/GitHub_Invertocat_Black_Clearspace-converted-inverted.png"
                             alt="" width="24" height="24">
                         <span>GitHub</span>
                     </a>
@@ -294,7 +296,7 @@
                 <nav class="footer-links" aria-label="Footer navigation">
                     <a href="https://github.com/JudeRgamba">
                         <img
-                            src="assets/icons/GitHub_Invertocat_Black_Clearspace.svg"
+                            src="assets/icons/GitHub_Invertocat_Black_Clearspace.svg" data-dark-src="assets/icons/GitHub_Invertocat_Black_Clearspace-converted-inverted.png"
                             alt=""
                             width="24"
                             height="24">
@@ -303,7 +305,7 @@
 
                     <a href="https://www.linkedin.com/in/jude-raphael-gamba">
                         <img
-                            src="assets/icons/linkedin.svg"
+                            src="assets/icons/linkedin.svg" data-dark-src="assets/icons/linkedin-converted-inverted.png"
                             alt=""
                             width="24"
                             height="24">
@@ -334,7 +336,7 @@
             download
             aria-label="Download resume">
             <img
-                src="assets/icons/download.svg"
+                src="assets/icons/download.svg" data-dark-src="assets/icons/download-converted-inverted.png"
                 alt=""
                 width="24"
                 height="24">

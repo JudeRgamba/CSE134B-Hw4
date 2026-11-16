@@ -33,33 +33,104 @@
     font-display: swap;
 }
 
-/* Color Palette*/
+/* Shared settings and default light theme */
 :root {
-    --jungle-teal: #6b9080ff;
-    --muted-teal: #a4c3b2ff;
-    --frozen-water: #cce3deff;
-    --azure-mist: #eaf4f4ff;
-    --mint-cream: #f6fff8ff; 
-
-    --feed-background: #ffffff;
-    --text-color: #1f2925;
     --font-body: "Twitter Chirp", Arial, sans-serif;
     --spacing: 1rem;
-    --accent-text: #365e4d;
+
+    color-scheme: light;
+    --page-background: #f6fff8;
+    --feed-background: #ffffff;
+    --surface-background: #eaf4f4;
+    --text-color: #1f2925;
+    --link-color: #365e4d;
+    --border-color: #cce3de;
+    --hover-background: #cce3de;
+    --accent-color: #6b9080;
+    --progress-track: #cce3de;
+    --button-background: #365e4d;
+    --button-hover-background: #1f2925;
+    --button-text: #ffffff;
+    --focus-color: #365e4d;
+    --input-background: #eaf4f4;
+    --input-border: #365e4d;
+    --error-color: #a12622;
+    --footer-background: #6b9080;
+    --footer-text: #1f2925;
+    --shadow-color: rgb(0 0 0 / 20%);
+    --floating-shadow-color: rgb(0 0 0 / 25%);
+    --backdrop-color: rgb(0 0 0 / 55%);
+}
+
+/* Dark theme: activated by data-theme="dark" on the html element. */
+:root[data-theme="dark"] {
+    color-scheme: dark;
+    --page-background: #101815;
+    --feed-background: #18231e;
+    --surface-background: #22322a;
+    --text-color: #edf5ef;
+    --link-color: #a4d8bb;
+    --border-color: #425c4f;
+    --hover-background: #30483b;
+    --accent-color: #89b9a0;
+    --progress-track: #425c4f;
+    --button-background: #365e4d;
+    --button-hover-background: #426e5b;
+    --button-text: #ffffff;
+    --focus-color: #b5ebcd;
+    --input-background: #22322a;
+    --input-border: #89b9a0;
+    --error-color: #ffaaa5;
+    --footer-background: #263e32;
+    --footer-text: #edf5ef;
+    --shadow-color: rgb(0 0 0 / 40%);
+    --floating-shadow-color: rgb(0 0 0 / 45%);
+    --backdrop-color: rgb(0 0 0 / 70%);
 }
 
 body {
     margin: 0;
-    background-color: var(--mint-cream);
+    background-color: var(--page-background);
     color: var(--text-color);
     font-family: var(--font-body);
     font-size: 1rem;
     line-height: 1.5;
 }
 
+a {
+    color: var(--link-color);
+}
+
+/* Native button supports Tab, Enter, and Space. Reveal only after setup. */
+.theme-toggle[hidden] {
+    display: none;
+}
+
+.theme-toggle {
+    padding: 0.5em 0.75em;
+    border: 1px solid var(--input-border);
+    border-radius: 0.75rem;
+    background-color: var(--button-background);
+    color: var(--button-text);
+    font: inherit;
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    background-color: var(--button-hover-background);
+}
+
+body > header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
 main {
     background-color: var(--feed-background);
-    border-inline: 1px solid var(--frozen-water);
+    border-inline: 1px solid var(--border-color);
     padding: var(--spacing);
 }
 
@@ -96,7 +167,7 @@ main {
         grid-row: 1;
         padding: var(--spacing);
         background-color: var(--feed-background);
-        border-inline: 1px solid var(--frozen-water);
+        border-inline: 1px solid var(--border-color);
     }
 
     body > main {
@@ -130,7 +201,7 @@ main {
         grid-row: 3;
         padding: var(--spacing);
         background-color: var(--feed-background);
-        border-inline: 1px solid var(--frozen-water);
+        border-inline: 1px solid var(--border-color);
     }
 }
 
@@ -165,15 +236,15 @@ main {
     }
 
     body > nav a:hover {
-        background-color: var(--frozen-water);
+        background-color: var(--hover-background);
         text-decoration: underline;
         text-underline-offset: 0.25em;
     }
 
     /* Attribute selector: identify the current page's navigation link. */
     body > nav a[aria-current="page"] {
-        background-color: var(--azure-mist);
-        color: var(--accent-text);
+        background-color: var(--surface-background);
+        color: var(--link-color);
         font-weight: 700;
         text-decoration: underline;
         text-underline-offset: 0.25em;
@@ -183,14 +254,14 @@ main {
         justify-content: center;
         margin-top: var(--spacing);
         padding: 0.85em 1em;
-        background-color: var(--accent-text);
-        color: var(--feed-background);
+        background-color: var(--button-background);
+        color: var(--button-text);
         font-size: 1rem;
         font-weight: 700;
     }
 
     body > nav .resume-link:hover {
-        background-color: var(--text-color);
+        background-color: var(--button-hover-background);
     }
 }
 
@@ -200,7 +271,7 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-    outline: 3px solid var(--accent-text);
+    outline: 3px solid var(--focus-color);
     outline-offset: 3px;
 }
 
@@ -210,7 +281,7 @@ select:focus-visible {
         position: sticky;
         top: 0;
         z-index: 10;
-        border-bottom: 1px solid var(--frozen-water);
+        border-bottom: 1px solid var(--border-color);
     }
 
     body > header > h1 {
@@ -232,7 +303,7 @@ select:focus-visible {
 
 /* Adjacent sibling combinator: separate consecutive feed sections. */
 .home-page > main > section + section {
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 .home-page > main > section > h2 {
@@ -284,18 +355,18 @@ select:focus-visible {
     width: 5rem;
     height: 5rem;
     object-fit: cover;
-    border: 3px solid var(--jungle-teal);
+    border: 3px solid var(--accent-color);
     border-radius: 50%;
 }
 
 .home-page .project-stories a:hover {
-    color: var(--accent-text);
+    color: var(--link-color);
     text-decoration: underline;
     text-underline-offset: 0.2em;
 }
 
 .home-page .project-stories a:hover img {
-    border-color: var(--accent-text);
+    border-color: var(--link-color);
 }
 
 /* Attribute selector: give linked projects a block box and anchor clearance. */
@@ -340,8 +411,8 @@ project-card[id] {
 
 /* Journal Sidebar Styling */
 .journal-panel {
-    background-color: var(--azure-mist);
-    border: 1px solid var(--frozen-water);
+    background-color: var(--surface-background);
+    border: 1px solid var(--border-color);
     border-radius: 1rem;
 }
 
@@ -358,7 +429,7 @@ project-card[id] {
 }
 
 .journal-panel > article {
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 .journal-panel h3 {
@@ -387,7 +458,7 @@ project-card[id] {
     gap: 0.5rem;
     padding: 0.5em;
     border-radius: 0.5rem;
-    color: var(--accent-text);
+    color: var(--link-color);
     font-size: 1rem;
     font-weight: 500;
 }
@@ -400,7 +471,7 @@ project-card[id] {
 
 /* Attribute selector: hover styling applies only to real profile links. */
 .social-link[href]:hover {
-    background-color: var(--frozen-water);
+    background-color: var(--hover-background);
     text-decoration-thickness: 2px;
 }
 
@@ -469,7 +540,7 @@ project-card[id] {
 
 /* Hobby Posts */
 .hobby-feed {
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 /* Child selectors: space the hobby feed's introductory heading and text. */
@@ -487,7 +558,7 @@ project-card[id] {
 
 .hobby-post {
     padding: var(--spacing);
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 .hobby-author {
@@ -545,7 +616,7 @@ project-card[id] {
 }
 
 .photo-gallery a:hover {
-    outline: 2px solid var(--accent-text);
+    outline: 2px solid var(--link-color);
     outline-offset: 2px;
 }
 
@@ -584,7 +655,7 @@ work-timeline {
     list-style: none;
     margin: 0 0 1.5rem 0.5rem;
     padding: 0;
-    border-left: 2px solid var(--jungle-teal);
+    border-left: 2px solid var(--accent-color);
 }
 
 /* Child selector: position each experience beside the timeline. */
@@ -606,7 +677,7 @@ work-timeline {
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 50%;
-    background-color: var(--jungle-teal);
+    background-color: var(--accent-color);
 }
 
 .career-timeline h3 {
@@ -644,9 +715,9 @@ work-timeline {
 
 .degree-widget {
     padding: 1.25rem;
-    border: 1px solid var(--frozen-water);
+    border: 1px solid var(--border-color);
     border-radius: 1rem;
-    background-color: var(--azure-mist);
+    background-color: var(--surface-background);
 }
 
 .degree-heading {
@@ -667,24 +738,24 @@ work-timeline {
     appearance: none;
     border: 0;
     border-radius: 999px;
-    background-color: var(--frozen-water);
-    accent-color: var(--jungle-teal);
+    background-color: var(--progress-track);
+    accent-color: var(--accent-color);
 }
 
 /* Chrome, Edge, and Safari: style the track and filled portion. */
 .degree-widget progress::-webkit-progress-bar {
-    background-color: var(--frozen-water);
+    background-color: var(--progress-track);
     border-radius: 20px;
 }
 
 .degree-widget progress::-webkit-progress-value {
-    background-color: var(--jungle-teal);
+    background-color: var(--accent-color);
     border-radius: 999px;
 }
 
 /* Firefox: style the filled portion. */
 .degree-widget progress::-moz-progress-bar {
-    background-color: var(--jungle-teal);
+    background-color: var(--accent-color);
     border-radius: 20px;
 }
 
@@ -703,32 +774,32 @@ work-timeline {
     padding: 0.75em 1.25em;
     border: 0;
     border-radius: 20px;
-    background-color: var(--accent-text);
-    color: var(--feed-background);
+    background-color: var(--button-background);
+    color: var(--button-text);
     font: inherit;
     font-weight: 700;
     cursor: pointer;
 }
 
 .degree-widget button:hover {
-    background-color: var(--text-color);
+    background-color: var(--button-hover-background);
 }
 
 .employment-dialog {
     width: min(90%, 26rem);
     margin: auto;
     padding: 1.75rem;
-    border: 1px solid var(--jungle-teal);
+    border: 1px solid var(--accent-color);
     border-radius: 1rem;
     background-color: var(--feed-background);
     color: var(--text-color);
-    box-shadow: 0 1rem 3rem rgb(0 0 0 / 20%);
+    box-shadow: 0 1rem 3rem var(--shadow-color);
     text-align: center;
 }
 
 /* Dim the page behind the open modal dialog. */
 .employment-dialog::backdrop {
-    background-color: rgb(0 0 0 / 55%);
+    background-color: var(--backdrop-color);
 }
 
 .employment-dialog h2 {
@@ -745,21 +816,21 @@ work-timeline {
     padding: 0.75em 1.5em;
     border: 0;
     border-radius: 20px;
-    background-color: var(--accent-text);
-    color: var(--feed-background);
+    background-color: var(--button-background);
+    color: var(--button-text);
     font: inherit;
     font-weight: 700;
     cursor: pointer;
 }
 
 .employment-dialog button:hover {
-    background-color: var(--text-color);
+    background-color: var(--button-hover-background);
 }
 
 /* Project feed styling */
 /* Adjacent sibling selector: divide consecutive Work feed sections. */
 .work-page > main > section + section {
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 .work-projects {
@@ -772,7 +843,7 @@ work-timeline {
 .work-projects > li + li {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 .work-projects project-card {
@@ -808,7 +879,7 @@ work-timeline {
 }
 
 .project-details a {
-    color: var(--accent-text);
+    color: var(--link-color);
     font-weight: 700;
     text-underline-offset: 0.2em;
 }
@@ -829,7 +900,7 @@ work-timeline {
 
 /* Adjacent sibling selector: divide the message form and poll. */
 .connect-page > main > section + section {
-    border-top: 1px solid var(--frozen-water);
+    border-top: 1px solid var(--border-color);
 }
 
 .connect-page h2 {
@@ -859,9 +930,9 @@ work-timeline {
     width: 100%;
     min-width: 0;
     padding: 0.75em;
-    border: 1px solid var(--accent-text);
+    border: 1px solid var(--input-border);
     border-radius: 0.75rem;
-    background-color: var(--azure-mist);
+    background-color: var(--input-background);
     color: var(--text-color);
     font: inherit;
 }
@@ -879,15 +950,15 @@ work-timeline {
     padding: 0.75em 1.5em;
     border: 0;
     border-radius: 20px;
-    background-color: var(--accent-text);
-    color: var(--feed-background);
+    background-color: var(--button-background);
+    color: var(--button-text);
     font: inherit;
     font-weight: 700;
     cursor: pointer;
 }
 
 .message-form button:hover {
-    background-color: var(--text-color);
+    background-color: var(--button-hover-background);
 }
 
 .validation-form {
@@ -904,7 +975,7 @@ work-timeline {
 .validation-form input:focus-visible,
 .validation-form textarea:focus-visible,
 .validation-form button:focus-visible {
-    outline: 3px solid var(--accent-text);
+    outline: 3px solid var(--focus-color);
     outline-offset: 3px;
 }
 
@@ -917,7 +988,7 @@ work-timeline {
 .validation-form .field-error {
     display: block;
     visibility: hidden;
-    color: #a12622;
+    color: var(--error-color);
     font-size: 0.875rem;
 }
 
@@ -930,7 +1001,7 @@ work-timeline {
     min-width: 0;
     margin: 0;
     padding: var(--spacing);
-    border: 1px solid var(--frozen-water);
+    border: 1px solid var(--border-color);
     border-radius: 0.75rem;
 }
 
@@ -949,19 +1020,19 @@ work-timeline {
 }
 
 .poll-option:hover {
-    background-color: var(--azure-mist);
+    background-color: var(--surface-background);
 }
 
 .poll-option input {
     flex-shrink: 0;
     margin: 0;
-    accent-color: var(--accent-text);
+    accent-color: var(--link-color);
 }
 
 /* Highlight the label containing a selected radio button. */
 .poll-option:has(input:checked) {
-    background-color: var(--frozen-water);
-    color: var(--accent-text);
+    background-color: var(--hover-background);
+    color: var(--link-color);
     font-weight: 700;
 }
 
@@ -969,7 +1040,7 @@ work-timeline {
 .poll-feedback {
     display: none;
     margin: 0.75rem 0 0;
-    color: var(--accent-text);
+    color: var(--link-color);
     font-weight: 700;
 }
 
@@ -982,9 +1053,9 @@ work-timeline {
 .validation-form .form-feedback {
     margin-top: 0.75rem;
     padding: 0.75rem;
-    border: 1px solid var(--accent-text);
+    border: 1px solid var(--link-color);
     border-radius: 0.75rem;
-    background-color: var(--azure-mist);
+    background-color: var(--surface-background);
 }
 
 .validation-form .form-feedback h3 {
@@ -1000,7 +1071,7 @@ work-timeline {
 
 /* Match the error color already used by the no-JS form. */
 .validation-form .form-errors p {
-    color: #a12622;
+    color: var(--error-color);
 }
 
 /* Reserve space for each error without showing empty paragraphs. */
@@ -1010,13 +1081,13 @@ work-timeline {
 
 .validation-form #comment-info.near-limit {
     font-weight: 700;
-    border-inline-start: 3px solid var(--accent-text);
+    border-inline-start: 3px solid var(--link-color);
     padding-inline-start: 0.75rem;
 }
 
 .validation-form #comment-info.at-limit {
     font-weight: 700;
-    border-inline-start:  double 6px var(--accent-text);
+    border-inline-start:  double 6px var(--link-color);
     padding-inline-start: 0.75rem;
 }
 
@@ -1028,8 +1099,8 @@ work-timeline {
 body > .site-footer {
     padding: 1.5rem;
     border: 0;
-    background-color: var(--jungle-teal);
-    color: var(--text-color);
+    background-color: var(--footer-background);
+    color: var(--footer-text);
 }
 
 .footer-content {
@@ -1077,7 +1148,7 @@ body > .site-footer {
 }
 
 .footer-links a:focus-visible {
-    outline-color: var(--text-color);
+    outline-color: var(--footer-text);
 }
 
 .footer-copyright {
@@ -1117,8 +1188,8 @@ body > .site-footer {
         height: 3.5rem;
 
         border-radius: 50%;
-        background-color: var(--accent-text);
-        box-shadow: 0 0.25rem 1rem rgb(0 0 0 / 25%);
+        background-color: var(--button-background);
+        box-shadow: 0 0.25rem 1rem var(--floating-shadow-color);
     }
 
     .floating-resume img {
@@ -1129,7 +1200,7 @@ body > .site-footer {
     }
 
     .floating-resume:hover {
-        background-color: var(--text-color);
+        background-color: var(--button-hover-background);
     }
 
     body {
@@ -1154,7 +1225,7 @@ body > .site-footer {
         z-index: 20;
         padding: 1rem;
         background-color: var(--feed-background);
-        border-bottom: 1px solid var(--frozen-water);
+        border-bottom: 1px solid var(--border-color);
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -1194,7 +1265,7 @@ body > .site-footer {
 
     .mobile-menu > summary {
         padding: var(--spacing);
-        color: var(--accent-text);
+        color: var(--link-color);
         font-weight: 700;
         cursor: pointer;
         list-style: none;
@@ -1203,7 +1274,7 @@ body > .site-footer {
     }
 
     .mobile-menu[open] > summary {
-        border-bottom: 1px solid var(--frozen-water);
+        border-bottom: 1px solid var(--border-color);
     }
 
     .mobile-menu > summary::-webkit-details-marker {
@@ -1240,17 +1311,17 @@ body > .site-footer {
     }
 
     .mobile-menu a:hover {
-        background-color: var(--azure-mist);
+        background-color: var(--surface-background);
     }
 
     .mobile-menu a[aria-current="page"] {
-        background-color: var(--frozen-water);
+        background-color: var(--hover-background);
         font-weight: 700;
     }
 
     .mobile-menu > summary:focus-visible,
     .mobile-menu a:focus-visible {
-        outline: 3px solid var(--accent-text);
+        outline: 3px solid var(--focus-color);
         outline-offset: -3px;
     }
 }
@@ -1269,11 +1340,11 @@ body > .site-footer {
 }
 
 .mobile-journal > summary:hover {
-    background-color: var(--frozen-water);
+    background-color: var(--hover-background);
 }
 
 .mobile-journal > summary:focus-visible {
-    outline: 3px solid var(--accent-text);
+    outline: 3px solid var(--focus-color);
     outline-offset: 3px;
 }
 
